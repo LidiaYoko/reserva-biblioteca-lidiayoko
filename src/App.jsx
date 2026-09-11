@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import "./App.css";
 import { books as initialBooks } from "./data/books";
+import BookForm from "./components/BookForm";
 import BookList from "./components/BookList";
 import Panel from "./components/Panel";
 
@@ -14,6 +14,10 @@ export default function App() {
         book.id === bookId ? { ...book, available: !book.available } : book
       )
     );
+  }
+  
+  function handleAddBook(newBook) {
+  setBooks((prevBooks) => [...prevBooks, newBook]);
   }
 
   const availableCount = books.filter((book) => book.available).length;
@@ -29,6 +33,12 @@ export default function App() {
         </p>
       </header>
 
+      {/* Painel para cadastrar novo livro */}
+      <Panel title="Novo livro">
+        <BookForm onAddBook={handleAddBook} />
+      </Panel>
+      
+      {/* Painel para listar o acervo */}
       <Panel title="Acervo">
         <BookList books={books} onReserve={handleReserve} />
       </Panel>
