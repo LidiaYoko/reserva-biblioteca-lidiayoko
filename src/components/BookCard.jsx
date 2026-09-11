@@ -1,4 +1,4 @@
-export default function BookCard({ book }) {
+export default function BookCard({ book, onReserve }) {
   return (
     <article className="book-card">
       <div>
@@ -8,6 +8,9 @@ export default function BookCard({ book }) {
       <span className={`badge ${book.available ? "badge-ok" : "badge-off"}`}>
         {book.available ? "Disponível" : "Reservado"}
       </span>
+      <button type="button" onClick={() => onReserve(book.id)}>
+        {book.available ? "Reservar" : "Devolver"}
+      </button>
     </article>
   );
 }
