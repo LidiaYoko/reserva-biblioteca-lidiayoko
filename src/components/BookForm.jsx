@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { BooksContext } from "../context/BooksContext";
 
-export default function BookForm({ onAddBook }) {
+export default function BookForm() {
+  const { addBook } = useContext(BooksContext);
+
   const [formData, setFormData] = useState({ title: "", author: "" });
   const [error, setError] = useState("");
 
@@ -27,7 +30,7 @@ export default function BookForm({ onAddBook }) {
       available: true,
     };
 
-    onAddBook(newBook);
+    addBook(newBook);
     setFormData({ title: "", author: "" });
     setError("");
   }

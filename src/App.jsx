@@ -1,47 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import "./App.css";
-import { books as initialBooks } from "./data/books";
 import BookForm from "./components/BookForm";
 import BookList from "./components/BookList";
 import Panel from "./components/Panel";
-
-const STORAGE_KEY = "reserva-biblioteca:books";
-  function loadBooks() {
-    try {
-      const storedBooks = localStorage.localStorage.getItem(STORAGE_KEY);
-
-      if (!storedBooks) {
-        return initialBooks;
-      }
-
-      const parsedBooks = JSON.parse(storeBooks);
-      return Array.isArray(parsedBooks) ? parsedBooks : initialBooks;
-    } catch {
-      return initialBooks;
-    }
-
-  }
+import { BooksContext } from "./context/BooksContext";
 
 export default function App() {
-  const [books, setBooks] = useState(loadBooks);
 
-  useEffect (() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(books));
-  }, [books]);
-
-  function handleReserve(bookId) {
-    setBooks((prev) =>
-      prev.map((book) =>
-        book.id === bookId ? { ...book, available: !book.available } : book
-      )
-    );
-  }
-  
-  function handleAddBook(newBook) {
-  setBooks((prevBooks) => [...prevBooks, newBook]);
-  }
- 
-  const availableCount = books.filter((book) => book.available).length;
+  const { books, availableCount } = useContext(BooksContext);
 
   return (
     <main className="app">
@@ -56,12 +22,12 @@ export default function App() {
 
       {/* Painel para cadastrar novo livro */}
       <Panel title="Novo livro">
-        <BookForm onAddBook={handleAddBook} />
+        <BookForm/>
       </Panel>
-      
+
       {/* Painel para listar o acervo */}
       <Panel title="Acervo">
-        <BookList books={books} onReserve={handleReserve} />
+        <BookList/>
       </Panel>
     </main>
   );
