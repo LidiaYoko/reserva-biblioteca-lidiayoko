@@ -4,7 +4,7 @@ import AcervoPage from "./pages/AcervoPage";
 import NovoLivroPage from "./pages/NovoLivroPage";
 import SobrePage from "./pages/SobrePage";
 import NotFoundPage from "./pages/NotFoundPage";
-
+import DisponiveisPage from "./pages/DisponiveisPages";
 
 export default function App() {
 
@@ -26,6 +26,10 @@ export default function App() {
           <NavLink to="/sobre">
             Sobre
           </NavLink>
+
+          <NavLink to="/disponiveis">
+            Disponíveis
+          </NavLink>
         </nav>
       </header>
 
@@ -35,6 +39,7 @@ export default function App() {
           <Route path="/novo" element={<NovoLivroPage />} />
           <Route path="/sobre" element={<SobrePage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/disponiveis" element={<DisponiveisPage />} />
         </Routes>
       </main>
     </div>

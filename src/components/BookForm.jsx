@@ -1,8 +1,11 @@
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router";
 import { BooksContext } from "../context/BooksContext";
 
 export default function BookForm() {
   const { addBook } = useContext(BooksContext);
+  
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ title: "", author: "" });
   const [error, setError] = useState("");
@@ -31,6 +34,7 @@ export default function BookForm() {
     };
 
     addBook(newBook);
+    navigate("/");
     setFormData({ title: "", author: "" });
     setError("");
   }

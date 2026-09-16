@@ -71,16 +71,18 @@ body {
 }
 
 .book-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 85px auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 16px;
+  gap: 14px;
+  padding: 14px;
   border: 1px solid var(--cinza-borda);
   border-radius: 12px;
   background: #ffffff;
 }
-
+.book-card .badge {
+  justify-self: center;
+}
 .book-card h2 {
   margin: 0 0 4px;
   font-size: 17px;
@@ -91,7 +93,10 @@ body {
   color: #55617a;
   font-size: 14px;
 }
-
+.book-card > div {
+  justify-self: start;
+  text-align: left;
+}
 .badge {
   padding: 4px 10px;
   border-radius: 999px;
@@ -153,19 +158,22 @@ button:hover {
   color: var(--vermelho);
   font-weight: 700;
 }
+
 .app-header {
-  display: flex;
+  display: grid;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 16px 4%;
+  gap: 12px;
+  padding: 20px;
   border-bottom: 1px solid #d7dde5;
   background: #ffffff;
 }
 
+
 .app-header nav {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
@@ -179,4 +187,14 @@ button:hover {
 .app-header a.active {
   background: #1f2937;
   color: #ffffff;
+}
+
+.button-reserve {
+  border-color: var(--verde);
+  background: var(--verde);
+}
+
+.button-return {
+  border-color: var(--vermelho);
+  background: var(--vermelho);
 }
